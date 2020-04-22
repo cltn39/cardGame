@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import Player from '../src/features/player';
 
 class App extends Component {
   render() {
     return (
-      <div>Awesome game</div>
-    )
+      <div>
+        <Player />
+      </div>
+    );
   }
-};
+}
 
 export default App;
