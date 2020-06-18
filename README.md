@@ -14,7 +14,7 @@ conceptional multiplayer RPG game with auto card draw combat
 * Github: [@cltn39](https://github.com/cltn39)
 
 👤 **Snugglin**: contributor   
-👤 **Hippo**: contributor
+👤 **Joseph Felan**: contributor
 
 ## Show your support
 
