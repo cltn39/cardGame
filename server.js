@@ -31,6 +31,7 @@ const connection = mysql.createConnection({
   database: process.env.DB_DB
 });
 
+// Initiate MySQL Connection
 connection.connect((err) => {
   if (err) {
     console.error("error connection: " + err.stack);
@@ -49,7 +50,14 @@ if (process.env.NODE_ENV === "production") {
 
 // Routes goes here
 ////////-------/////////
-
+app.get("/", function(req, res) {
+  connection.query("", function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+    res.send("test test")
+  })
+})
 // API routes definition goes here
 /////////--------//////////
 
