@@ -4,7 +4,7 @@ USE cardgame_db;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
-    UserID int NOT NULL,
+    UserID int NOT NULL AUTO_INCREMENT,
     SupervisorUserID VARCHAR(50),
     UserGenderID int NOT NULL DEFAULT((0)),
     AccountName nvarchar(50),
@@ -14,13 +14,13 @@ CREATE TABLE user (
     FamilyName nvarchar(100),
     FullName nvarchar(300),
     UserNote nvarchar(500),
-    ExternalUser bit NOT NULL DEFAULT((0)),
+    ExternalUser BOOLEAN NOT NULL DEFAULT 0,
     Photo varbinary,
     Address1 nvarchar(50),
     Address2 nvarchar(50),
     City nvarchar(50),
     Region nvarchar(50),
-    Active bit NOT NULL DEFAULT((1)),
+    Active BOOLEAN NOT NULL DEFAULT 1,
     CreatedByUserID int,
     CreatedDate datetime NOT NULL DEFAULT(getdate()),
     ModifiedByUserID int,
@@ -43,10 +43,10 @@ CREATE TABLE Memberships (
 DROP TABLE IF EXISTS UserRole;
 
 CREATE TABLE UserRole (
-    UserRoleID int NOT NUll Identity(1,1),
+    UserRoleID int NOT NUll AUTO_INCREMENT,
     UserRoleName nvarchar(50) NOT NULL,
     UserRoleNote nvarchar(250),
-    Active bit NOT NULL DEFAULT((1)),
+    Active BOOLEAN NOT NULL DEFAULT 1,
     CreatedByUserID int,
     CreatedDate datetime NOT NULL DEFAULT(getdate()),
     ModifiedByUserID int,
@@ -67,7 +67,7 @@ CREATE TABLE UserUserNamePrefix (
 Drop TABLE IF EXISTS UserNamePrefix;
 
 CREATE TABLE UserNamePrefix (
-    UserNamePrefixID int,
+    UserNamePrefixID int AUTO_INCREMENT,
     UserNamePrefix nvarchar(50),
     UserNamePrefixNote nvarchar(250),
     Active BOOLEAN DEFAULT 1,
@@ -81,7 +81,7 @@ CREATE TABLE UserNamePrefix (
 DROP TABLE IF EXISTS LoginAttempt;
 
 CREATE TABLE LoginAttempt (
-    LoginAttemptID int NOT NULL,
+    LoginAttemptID int NOT NULL AUTO_INCREMENT,
     AccountName nvarchar(50) NOT NULL,
     Password nvarchar(50),
     IPNumber nvarchar(50),
@@ -102,3 +102,16 @@ CREATE TABLE UserGender (
     ModifiedDate datetime DEFAULT(getdate()) NOT NULL,
     PRIMARY KEY (UserGenderID)
 );
+
+DROP TABLE IF EXISTS Password;
+
+CREATE TABLE Password (
+    PasswordID int NOT NULL AUTO_INCREMENT,
+    UserID int,
+    Password nvarchar(50),
+    PasswordAnswer nvarchar(50),
+    PasswordQuestion nvarchar(50),
+    Active BOOLEAN DEFAULT 1 NOT NULL,
+    CreatedByUserID int,
+    CreatedDate datetime DEFAULT(getdate()) NOT NULL
+)
