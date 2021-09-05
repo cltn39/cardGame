@@ -2,23 +2,22 @@ require('dotenv').config();
 const express = require('express');
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 // User AUthentication(not set up yet!)
 // const passport = require('passport')
 // const jwtStrategy = require('passport-jwt').Strategy;
 // const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-//Init Aapp/Port
+//Init App/ Init Port
 const app = express();
 const PORT = process.env.PORT;
-
-// Route middleware
+// Express middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+//serve static 
 app.use(express.static('public'));
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+// Route middleware
 
 //mySQL connection 
 const connection = mysql.createConnection({
@@ -45,37 +44,29 @@ if (process.env.NODE_ENV === "production") {
 // Passport middleware
 // app.use(passport.initialize());
 // require("./config/passport")(passport);
-var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'secret';
-opts.issuer = 'accounts.examplesoft.com';
-opts.audience = 'yoursite.net';
-passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    User.findOne({id: jwt_payload.sub}, function(err, user) {
-        if (err) {
-            return done(err, false);
-        }
-        if (user) {
-            return done(null, user);
-        } else {
-            return done(null, false);
-            // or you could create a new account
-        }
-    });
-}));
+// var opts = {}
+// opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// opts.secretOrKey = 'secret';
+// opts.issuer = 'accounts.examplesoft.com';
+// opts.audience = 'yoursite.net';
+// passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+//     User.findOne({id: jwt_payload.sub}, function(err, user) {
+//         if (err) {
+//             return done(err, false);
+//         }
+//         if (user) {
+//             return done(null, user);
+//         } else {
+//             return done(null, false);
+//             // or you could create a new account
+//         }
+//     });
+// }));
 
-// Routes goes here
-////////-------/////////
-app.get("/", function(req, res) {
-  connection.query("", function(err, result) {
-    if (err) {
-      return res.status(500).end();
-    }
-    res.send("test test")
-  })
-})
 // API routes definition goes here
 /////////--------//////////
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
