@@ -1,28 +1,24 @@
 require('dotenv').config();
-const mysql = require('mysql');
 const express = require('express');
-const bodyParser = require('body-parser')
-const passport = require('passport')
-const jwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
+const mysql = require('mysql');
 
+// User AUthentication(not set up yet!)
+// const passport = require('passport')
+// const jwtStrategy = require('passport-jwt').Strategy;
+// const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+//Init Aapp/Port
 const app = express();
+const PORT = process.env.PORT;
 
-const PORT = process.env.PORT || 8080;
-// express.static middleware
-// app.use(express.static(path.join(__dirname, 'build')));
-
-// Sets up the Express app to handle data parsing
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
-// BodyParser middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-)
-app.use(bodyParser.json());
+// Route middleware
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('public'));
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 //mySQL connection 
 const connection = mysql.createConnection({

@@ -1,5 +1,5 @@
 conceptional multiplayer RPG game with auto card draw combat
-# cardGame 🃏🃏
+# The Card Game(Work-in-progress title) 🃏🃏
 ![Version](https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/cltn39/main-portfolio#readme)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/cltn39/main-portfolio/graphs/commit-activity)
@@ -13,7 +13,7 @@ conceptional multiplayer RPG game with auto card draw combat
 * Twitter: [@cltn39](https://twitter.com/cltn39)
 * Github: [@cltn39](https://github.com/cltn39)
 
-👤 **Snugglin**: contributor   
+👤 **Ross Steuernol**: contributor   
 👤 **Joseph Felan**: contributor
 
 ## Show your support
