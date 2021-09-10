@@ -64,7 +64,6 @@ if (process.env.NODE_ENV === "production") {
 // }));
 
 // API routes definition goes here
-/////////--------//////////
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
